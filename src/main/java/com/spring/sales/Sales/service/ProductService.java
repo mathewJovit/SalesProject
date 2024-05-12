@@ -9,6 +9,7 @@ import java.util.List;
 public interface ProductService {
     public List<ProductDTO> getAllProducts(Integer pageNo,Integer pageSize) throws ProductNotFoundException;
     public ProductDTO getProductById(Long id) throws ProductNotFoundException;
+    public Long addProduct(ProductDTO product) throws ProductNotFoundException;
     public void updateProduct(Long id,Product product) throws ProductNotFoundException;
     public void deleteProduct(Long id) throws ProductNotFoundException;
 

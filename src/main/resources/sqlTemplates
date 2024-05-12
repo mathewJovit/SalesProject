@@ -20,5 +20,15 @@ CREATE TABLE Sale (
     FOREIGN KEY (productId) REFERENCES Product(id)
 );
 
+INSERT INTO Product (name, description, price, quantity) VALUES
+('Product 1', 'Description for Product 1', 29.99, 100),
+('Product 2', 'Description for Product 2', 49.99, 75),
+('Product 3', 'Description for Product 3', 19.99, 150);
 
+-- Inserting rows into the Sale table
+INSERT INTO Sale (productId, quantity, saleDate) VALUES
+(1, 10, '2024-05-01'),
+(2, 5, '2024-05-02'),
+(1, 20, '2024-05-03'),
+(3, 15, '2024-05-04');
 

@@ -89,6 +89,25 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public Long addProduct(ProductDTO product) throws ProductNotFoundException {
+        Product productEntity = new Product();
+        productEntity.setName(product.getName());
+        productEntity.setDescription(product.getDescription());
+        productEntity.setQuantity(product.getQuantity());
+        productEntity.setPrice(product.getPrice());
+        List<SalesDTO> salesDTOS = product.getSales();
+        List<Sales> sales= new LinkedList<>();
+        if (!salesDTOS.isEmpty()) {
+            sales = salesDTOS.stream()
+                    .map(s->new Sales(s.getProductId(),s.getQuantity(),s.getSaleDate()))
+                    .toList();
+        }
+        productEntity.setSales(sales);
+        Product productEntity2 = productRepository.save(productEntity);
+        return productEntity2.getId();
+    }
+
+    @Override
     public void updateProduct(Long id, Product product) throws ProductNotFoundException {
         Optional<Product> optionalProduct = productRepository.findById(id);
         Product existingProduct = optionalProduct.orElseThrow(() -> new ProductNotFoundException("Product.PRODUCT_NOT_FOUND"));
