@@ -1,0 +1,24 @@
+drop database if exists product_db;
+create database product_db;
+use product_db;
+
+#Create Product table
+CREATE TABLE Product (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2) NOT NULL,
+    quantity INT NOT NULL
+);
+
+#Create Sale table
+CREATE TABLE Sale (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    productId INT NOT NULL,
+    quantity INT NOT NULL,
+    saleDate DATE NOT NULL,
+    FOREIGN KEY (productId) REFERENCES Product(id)
+);
+
+
+
